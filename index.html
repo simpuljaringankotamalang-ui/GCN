@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<!-- AOS Animation -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geocraft Nusantara | Geospatial Consultant</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/1.6.0/Control.FullScreen.min.css"/>
+
+  <style>
+    #map { height: 520px; }
+
+    .leaflet-control-filelayer {
+      background: #0b3c5d;
+      color: #fff;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .leaflet-control-filelayer:hover {
+      background: #f4b41a;
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+  <div class="wrapper">
+    <div class="logo">
+      <a href="index.html">
+        <img src="image/Logo GCN.png" alt="Geocraft Nusantara">
+      </a>
+    </div>
+    <div class="menu">
+      <ul>
+        <li><a href="#about">Home</a></li>
+        <li class="dropdown">
+          <a href="#about">About Us<i class="fa-solid fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="Company/Company.html">Company</a></li>
+            <li><a href="Equipment/Equipment.html">Equipment</a></li>
+          </ul>
+        </li>
+        <li><a href="#services">Service</a></li>
+        <li><a href="Experience/Experince.html">Project Experience</a></li>
+        <li><a href="#solutions">Insights</a></li>        
+        <li><a href="Contact/Contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header>
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="vidio/Kota Malang.mp4" type="video/mp4">
+  </video>
+
+  <div class="header-opacity"></div>
+  <div class="header-jumbotron">
+    <h1>Geocraft Nusantara</h1>
+    <h3>Geospatial Consultant & Mapping Survey</h3>
+    <p>Survey • GIS • Web GIS • Spatial Analysis</p>
+    <a href="https://wa.me/6285736572183" class="button button-xl">Consult Now</a>
+  </div>
+</header>
+
+<script>
+  document.getElementById("bg-video").playbackRate = 0.7;
+</script>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrapper">
+    <h2>"Crafting Spatial Intelligence for the Future"</h2>
+    <p>
+      <b>Geocraft Nusantara</b> is a geospatial consulting firm specializing in surveying, 
+      mapping, and geographic information system (GIS) development. We are committed to providing accurate, 
+      innovative, and sustainable spatial solutions to support decision-making.
+    </p>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services">
+  <div class="wrapper services-grid">
+    <h2>Our Services</h2>
+    <div class="service-box">
+      <i class="fa-solid fa-map-location-dot"></i>
+      <h4>Survey & Mapping</h4>
+      <p>Topographic surveys, boundary surveys, utility surveys, and field measurements.</p>
+    </div>
+
+    <div class="service-box">
+      <i class="fa-solid fa-layer-group"></i>
+      <h4>GIS & Spatial Analysis</h4>
+      <p>Processing, analysis, and visualization of spatial data for various sectors.</p>
+    </div>
+
+    <div class="service-box">
+      <i class="fa-solid fa-globe"></i>
+      <h4>Web GIS & Geoportal</h4>
+      <p>Development of interactive GIS dashboards and geoportal systems.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="footer-wrapper">
+
+      <!-- BRAND & ADDRESS -->
+      <div class="footer-col">
+        <a href="index.html">
+          <img src="image/Logo GCN.png" alt="Geocraft Nusantara" class="footer-logo">
+        </a>
+        <p class="company-name">Geocraft Nusantara</p>
+        <p>
+          Jl. Gading No. 59 RT/RW 008/001<br>
+          Kel. Gadingkasri, Kec. Klojen<br>
+          Kota Malang 65115, Indonesia
+        </p>
+      </div>
+
+      <!-- SITEMAP -->
+      <div class="footer-col">
+        <h4>Sitemap</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="Company/Company.html">About Company</a></li>
+          <li><a href="Equipment/Equipment.html">About Equipment</a></li>
+          <li><a href="#services">Service</a></li>
+          <li><a href="Experience/Experince.html">Project Experience</a></li>
+          <li><a href="Experience/Experience.html">Insights</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="footer-col">
+        <h4>Contact us</h4>
+        <p>Email: <a href="mailto:geocraftnusantara@gmail.com">geocraftnusantara@gmail.com</a></p>
+        <p>Phone: +62 857-3657-2183</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="https://wa.me/6285736572183"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="footer-col footer-cta">
+        <h4>Need a Consultation?</h4>
+        <p>We are ready to help with your mapping and GIS needs</p>
+        <a href="https://wa.me/6285736572183"
+          class="btn-footer"
+          target="_blank">
+          <i class="fab fa-whatsapp"></i> Contact Now
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER BOTTOM -->
+  <div class="footer-bottom">
+    © 2026 Geocraft Nusantara • Privacy Policy • Terms & Conditions
+  </div>
+</footer>
+
+<!-- ================= LEAFLET SCRIPT ================= -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/1.6.0/Control.FullScreen.min.js"></script>
+<script src="https://unpkg.com/shpjs@latest/dist/shp.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/makinacorpus/Leaflet.FileLayer/leaflet.filelayer.js"></script>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 900,
+    easing: 'ease-in-out',
+    once: true
+  });
+</script>
+
+</body>
+</html>
