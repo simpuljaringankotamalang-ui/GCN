@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<!-- AOS Animation -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geocraft Nusantara | Geospatial Consultant</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="Experience.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  
+  <style>
+    #map { height: 680px; }
+    
+    .leaflet-control-filelayer {
+      background: #0b3c5d;
+      color: #fff;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .leaflet-control-filelayer:hover {
+      background: #f4b41a;
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+  
+<!-- ================= NAVBAR ================= -->
+<nav>
+  <div class="wrapper">
+    <div class="logo">
+      <a href="../index.html">
+        <img src="../image/Logo GCN.png" alt="Geocraft Nusantara">
+      </a>
+    </div>
+    <div class="menu">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#about">About Us<i class="fa-solid fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../Company/Company.html">Company</a></li>
+            <li><a href="../Equipment/Equipment.html">Equipment</a></li>
+          </ul>
+        </li>
+        <li><a href="../index.html#services">Service</a></li>
+        <li><a href="../Experience/Experince.html">Project Experience</a></li>
+        <li><a href="#solutions">Insights</a></li>        
+        <li><a href="../Contact/Contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrapper">
+    <h2>Project Experience</h2>
+    <p>We have been trusted to handle various mapping projects throughout Indonesia —
+      from topographic mapping and aerial drone surveys to geospatial analysis for infrastructure and urban planning.
+    </p>
+  </div>
+</section>
+
+<!-- ================= SOLUTIONS / MAP ================= -->
+<section id="solutions-map">
+  <div id="map"></div>
+</section>
+
+<!-- ================= LEAFLET SCRIPT ================= -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/1.6.0/Control.FullScreen.min.js"></script>
+<script src="https://unpkg.com/shpjs@latest/dist/shp.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/makinacorpus/Leaflet.FileLayer/leaflet.filelayer.js"></script>
+
+<script>
+  var map = L.map("map", {
+    center: [-7.978890139357309, 112.63334134716487],
+    zoom: 13,
+  });
+
+  var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+  var carto = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
+  var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+
+  var baseMaps = {
+    "OSM": osm,
+    "Carto Light": carto,
+    "ESRI Satelit": esri
+  };
+
+  var geojsonLayer = L.featureGroup().addTo(map);
+  var uploadedLayers = L.featureGroup().addTo(map);
+
+  var gcnIcon = L.icon({
+  iconUrl: '../image/point_gcn.png',  
+  iconSize: [40, 40],      
+  iconAnchor: [20, 20],    
+  popupAnchor: [0, -15]    
+  });
+
+   const GCN = L.layerGroup();
+
+  L.marker([-7.971561714987042, 112.61351833727753], {
+  icon: gcnIcon
+  })
+  .bindPopup("<b>Head Office Geocraft Nusantara</b><br>Kota Malang")
+  .addTo(GCN);
+
+  L.marker([-7.979224, 112.622283])
+  .bindPopup(`
+    <b>Flood Area Mapping</b><br>
+    Bareng, Malang City<br><br>
+    <img src="image/Portofolio/Pemetaan Bareng.jpeg" class="popup-img">
+  `)
+  .addTo(GCN);
+
+  L.marker([-7.985244, 112.617588])
+    .bindPopup(`
+    <b>Flood Area Mapping</b><br>
+    Tanjungrejo, Malang City<br><br>
+    <img src="image/Portofolio/Survey Topografi Kawasan Perkotaan.jpeg" class="popup-img">
+  `)
+  .addTo(GCN);
+  
+  L.marker([-7.961679813720414, 112.60561824907204])
+    .bindPopup(`
+    <b>Flood Area Mapping</b><br>
+    Karangbesuki, Malang City<br><br>
+    <img src="image/Portofolio/Karangbesuki/IMG20251209144737.jpg" class="popup-img">
+  `)
+  .addTo(GCN);
+
+  L.marker([-7.972537, 112.611097])
+    .bindPopup(`
+    <b>Flood Area Mapping</b><br>
+    Pisang Candi, Malang City<br><br>
+    <img src="image/Portofolio/Karangbesuki/Malang City Point.jpg" class="popup-img">
+  `)
+  .addTo(GCN);
+
+  L.marker([-7.947498197033238, 112.61606599232772])
+  .bindPopup(`
+    <b>Flood Area Mapping</b><br>
+    Pisang Candi, Malang City<br><br>
+
+    <img src="image/Portofolio/Polinema/DSC_0087.JPG" class="popup-img"><br>
+    <img src="image/Portofolio/Polinema/DSC_0060.JPG" class="popup-img"><br>
+    <img src="image/Portofolio/Polinema/DSC_0143.JPG" class="popup-img">
+  `)
+  .addTo(GCN);
+
+  GCN.addTo(map);
+
+  fetch("data/data.geojson")
+    .then(res => res.json())
+    .then(data => {
+      var gj = L.geoJSON(data, {
+        style: { color: "#0b3c5d", weight: 2, fillOpacity: 0.3 }
+      });
+      geojsonLayer.addLayer(gj);
+      map.fitBounds(geojsonLayer.getBounds());
+    });
+
+  var layerControl = L.control.layers(baseMaps, {
+    "Proyek GNC": GCN
+  }).addTo(map);
+</script>
+
+<script>
+L.Control.CustomFullscreen = L.Control.extend({
+  onAdd: function () {
+    var btn = L.DomUtil.create('div', 'leaflet-bar leaflet-control custom-fullscreen');
+    btn.innerHTML = '<a href="#" title="Fullscreen"><i class="fas fa-expand"></i></a>';
+
+    L.DomEvent.on(btn, 'click', function (e) {
+      L.DomEvent.stop(e);
+
+      if (!document.fullscreenElement) {
+        document.getElementById('map').requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    });
+
+    return btn;
+  }
+});
+
+new L.Control.CustomFullscreen({ position: 'topleft' }).addTo(map);
+</script>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 900,
+    easing: 'ease-in-out',
+    once: true
+  });
+</script>
+
+<!-- ================= PORTFOLIO ================= -->
+<section id="portfolio">
+  <div class="wrapper">
+
+    <h2 data-aos="fade-up">Project Experience</h2>
+    <p data-aos="fade-up" data-aos-delay="150">
+      We work on a variety of geospatial projects such as land mapping, regional planning, disaster mitigation, 
+      and infrastructure surveys — all designed with accurate data to support various industry sectors.
+    </p>
+
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card" data-aos="fade-up" data-aos-delay="0">
+        <img src="image/Portofolio/Survey Topografi Kawasan Perkotaan.jpeg" alt="Survey Topografi">
+        <div class="portfolio-info">
+          <h4>Topographic Survey of Urban Areas</h4>
+          <span>Survey & Mapping • 2023</span>
+          <p>Malang City</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-aos="fade-up" data-aos-delay="150">
+        <img src="image/Portofolio/1.jpeg" alt="Web GIS">
+        <div class="portfolio-info">
+          <h4>Web GIS Infrastructure Development</h4>
+          <span>Web GIS • 2024</span>
+          <p>Malang City</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="image/Portofolio/Analisis Spasial.jpeg" alt="Analisis Spasial">
+        <div class="portfolio-info">
+          <h4>2D Flood Modeling</h4>
+          <span>GIS & Analysis • 2024</span>
+          <p>Malang City</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="image/Portofolio/Polinema/DSC_0087.JPG" alt="Analisis Spasial">
+        <div class="portfolio-info">
+          <h4>Flood Area Mapping</h4>
+          <span>Survey & Mapping • 2025</span>
+          <p>Malang City</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="image/Portofolio/Polinema/DSC_0143.JPG" alt="Analisis Spasial">
+        <div class="portfolio-info">
+          <h4>Flood Area Mapping</h4>
+          <span>Survey & Mapping • 2025</span>
+          <p>Malang City</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="image/Portofolio/Karangbesuki/Malang City Point.jpg" alt="Analisis Spasial">
+        <div class="portfolio-info">
+          <h4>Spatial Analysis of Spatial Planning</h4>
+          <span>Survey & Mapping • 2025</span>
+          <p>Malang City</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="image/Portofolio/Karangbesuki/IMG20251209144737.jpg" alt="Analisis Spasial">
+        <div class="portfolio-info">
+          <h4>Spatial Analysis of Spatial Planning</h4>
+          <span>Survey & Mapping • 2025</span>
+          <p>Malang City</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="image/Portofolio/Bumiayu/Pesantren Alfulkron bumiayu.JPG" alt="Analisis Spasial">
+        <div class="portfolio-info">
+          <h4>Spatial Analysis of Spatial Planning</h4>
+          <span>Survey & Mapping • 2025</span>
+          <p>Malang City</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="image/Portofolio/Bumiayu/DSC_0042.JPG" alt="Analisis Spasial">
+        <div class="portfolio-info">
+          <h4>Spatial Analysis of Spatial Planning</h4>
+          <span>Survey & Mapping • 2025</span>
+          <p>Malang City</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="footer-wrapper">
+
+      <!-- BRAND & ADDRESS -->
+      <div class="footer-col">
+        <a href="../index.html"><img src="../image/Logo GCN.png" alt="Geocraft Nusantara" class="footer-logo">
+        </a>
+        <p class="company-name">Geocraft Nusantara</p>
+        <p>
+          Jl. Gading No. 59 RT/RW 008/001<br>
+          Kel. Gadingkasri, Kec. Klojen<br>
+          Kota Malang 65115, Indonesia
+        </p>
+      </div>
+
+      <!-- SITEMAP -->
+      <div class="footer-col">
+        <h4>Sitemap</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../Company/Company.html">About Company</a></li>
+          <li><a href="../Equipment/Equipment.html">About Equipment</a></li>
+          <li><a href="#services">Service</a></li>
+          <li><a href="../Experience/Experince.html">Project Experience</a></li>
+          <li><a href="../Experience/Experince.html">Insights</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p>Email: <a href="mailto:geocraftnusantara@gmail.com">geocraftnusantara@gmail.com</a></p>
+        <p>Phone: +62 857-3657-2183</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="footer-col footer-cta">
+        <h4>Need a Consultation?</h4>
+        <p>We are ready to help with your mapping and GIS needs</p>
+        <a href="https://wa.me/6285736572183"
+          class="btn-footer"
+          target="_blank">
+          <i class="fab fa-whatsapp"></i> Contact Now
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER BOTTOM -->
+  <div class="footer-bottom">
+    © 2026 Geocraft Nusantara • Privacy Policy • Terms & Conditions
+  </div>
+</footer>
+
+</body>
+</html>
